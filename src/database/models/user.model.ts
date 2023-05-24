@@ -37,46 +37,21 @@ export default class UserModel extends Model {
 
   @Column({
     type: sequelize.STRING,
-    allowNull: false,
-    defaultValue: 'male',
-  })
-  public gender: string;
-
-  @Column({
-    type: sequelize.DATEONLY,
-    allowNull: true,
-  })
-  public date_of_birth: Date | string | null;
-
-  @Column({
-    type: sequelize.STRING,
-    allowNull: true,
-  })
-  public country_code: string | null;
-
-  @Column({
-    type: sequelize.STRING,
     allowNull: true,
   })
   public phone: string | null;
 
   @Column({
-    type: sequelize.STRING,
+    type: sequelize.INTEGER,
     allowNull: true,
   })
-  public introduction: string | null;
+  public so_bai_dang_cong_thuc: number | 0;
 
   @Column({
     type: sequelize.STRING,
     allowNull: true,
   })
-  public nickname: string | null;
-
-  @Column({
-    type: sequelize.STRING,
-    allowNull: true,
-  })
-  public address: string | null;
+  public url_video: string | null;
 
   @CreatedAt
   public created_at: Date | null;

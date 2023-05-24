@@ -27,7 +27,6 @@ export class UserService extends CrudService<UserModel> {
     user.name = attrs.name;
     user.email = attrs.email;
     user.password = await bcrypt.hash(attrs.password, 10);
-    user.date_of_birth = attrs.date_of_birth;
     await user.save();
     return user;
   }
@@ -39,7 +38,6 @@ export class UserService extends CrudService<UserModel> {
     const user = await this.findById(id);
     user.name = attrs.name;
     user.email = attrs.email;
-    user.date_of_birth = attrs.date_of_birth;
     await user.save();
     return user;
   }
