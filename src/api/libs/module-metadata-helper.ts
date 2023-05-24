@@ -30,6 +30,10 @@ import { FileFilterCallback, Multer } from 'multer';
 import { FollowerController } from '../controllers/follower.controller';
 import { FollowerService } from '../services/follower.service';
 import FollowerModel from '../../database/models/follower.model';
+import FavoriteModel from '../../database/models/favorite.model';
+import { FavoriteController } from '../controllers/favorite.controller';
+import { FavoriteService } from '../services/favorite.service';
+
 config();
 
 export const moduleMetadataHelper: ModuleMetadata = {
@@ -42,6 +46,7 @@ export const moduleMetadataHelper: ModuleMetadata = {
       LoginHistoryModel,
       TokenModel,
       FollowerModel,
+      FavoriteModel
     ]),
     PassportModule.register({
       defaultStrategy: 'jwt',
@@ -81,6 +86,7 @@ export const moduleMetadataHelper: ModuleMetadata = {
     AdminController,
     AuthAdminController,
     FollowerController,
+    FavoriteController
   ],
   providers: [
     JwtStrategy,
@@ -90,5 +96,6 @@ export const moduleMetadataHelper: ModuleMetadata = {
     AdminService,
     AuthAdminService,
     FollowerService,
+    FavoriteService
   ],
 };

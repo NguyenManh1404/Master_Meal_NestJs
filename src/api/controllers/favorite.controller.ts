@@ -23,51 +23,51 @@ import {
 import {} from '../../common/dtos/response-schema.dto';
 import { OpenApiResponseStatus422 } from '../../common/dtos/validation.dto';
 import { ServerErrorResponseSchema } from '../../common/errors/server.error';
-import { FollowerService } from '../services/follower.service';
 import {
   ApiResponseStatus201,
   OpenApiResponseStatus201,
 } from '../../common/responses/201.response';
-import { FollowerResponse } from '../responses/follower/follower.response';
-import { FollowerCreateRequest } from '../requests/follower/follower-create.request';
 import { OpenApiResponseStatus404 } from '../../common/responses/404.response';
+import { FavoriteCreateRequest } from '../requests/favorite/favorite-create.request';
+import { FavoriteResponse } from '../responses/favorite/favorite.response';
+import { FavoriteService } from '../services/favorite.service';
 
-@Controller('follower')
-@ApiTags('Follower')
+@Controller('favorite')
+@ApiTags('Favorite')
 @ApiInternalServerErrorResponse({
   description: 'Server error',
   type: ServerErrorResponseSchema,
 })
 @ApiBearerAuth('Bearer')
 @UseGuards(JwtAuthGuard)
-export class FollowerController {
-  constructor(protected readonly followerService: FollowerService) {}
+export class FavoriteController {
+  constructor(protected readonly favoriteService: FavoriteService) {}
 
   @Post('')
   @HttpCode(201)
-  @OpenApiResponseStatus201(FollowerResponse)
+  @OpenApiResponseStatus201(FavoriteResponse)
   @OpenApiResponseStatus422()
   public async create(
-    @Body() attrs: FollowerCreateRequest
-  ): Promise<ApiResponseStatus200Schema<FollowerResponse>> {
-    const follower = await this.followerService.create(attrs);
+    @Body() attrs: FavoriteCreateRequest
+  ): Promise<ApiResponseStatus200Schema<FavoriteResponse>> {
+    const favorite = await this.favoriteService.create(attrs);
     return new ApiResponseStatus201(
       'Follower created successfully.',
-      new FollowerResponse(follower.dataValues)
+      new FavoriteResponse(favorite.dataValues)
     );
   }
 
   @Get(':id')
   @HttpCode(200)
-  @ApiOperation({ summary: 'Get follower detail' })
-  @OpenApiResponseStatus200(FollowerResponse)
+  @ApiOperation({ summary: 'Get favorite detail' })
+  @OpenApiResponseStatus200(FavoriteResponse)
   @OpenApiResponseStatus404()
   public async show(
     @Param('id') id: string
-  ): Promise<ApiResponseStatus200Schema<FollowerResponse>> {
+  ): Promise<ApiResponseStatus200Schema<FavoriteResponse>> {
     return new ApiResponseStatus200(
-      'Get follower detail successfully.',
-      await this.followerService.findById(id)
+      'Get favorite detail successfully.',
+      await this.favoriteService.findById(id)
     );
   }
 
@@ -78,8 +78,8 @@ export class FollowerController {
     @Param('id') id: string
   ): Promise<ApiResponseStatus200Schema<boolean>> {
     return new ApiResponseStatus200(
-      'Follower deleted successfully.',
-      await this.followerService.delete(id)
+      'Favorite deleted successfully.',
+      await this.favoriteService.delete(id)
     );
   }
 }
