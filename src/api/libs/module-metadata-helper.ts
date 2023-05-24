@@ -36,6 +36,9 @@ import { FavoriteService } from '../services/favorite.service';
 import BaiDangCongThucModel from '../../database/models/baidangcongthuc.model';
 import { BaiDangCongThucService } from '../services/baidangcongthuc.service';
 import { BaidangcongthucController } from '../controllers/baidangcongthuc.controller';
+import NguyenLieuModel from '../../database/models/nguyenlieu.model';
+import { NguyenLieuController } from '../controllers/nguyenlieu.controller';
+import { NguyenLieuService } from '../services/nguyenlieu.service';
 
 config();
 
@@ -51,6 +54,7 @@ export const moduleMetadataHelper: ModuleMetadata = {
       FollowerModel,
       FavoriteModel,
       BaiDangCongThucModel,
+      NguyenLieuModel,
     ]),
     PassportModule.register({
       defaultStrategy: 'jwt',
@@ -92,6 +96,7 @@ export const moduleMetadataHelper: ModuleMetadata = {
     FollowerController,
     FavoriteController,
     BaidangcongthucController,
+    NguyenLieuController,
   ],
   providers: [
     JwtStrategy,
@@ -103,5 +108,6 @@ export const moduleMetadataHelper: ModuleMetadata = {
     FollowerService,
     FavoriteService,
     BaiDangCongThucService,
+    NguyenLieuService,
   ],
 };
