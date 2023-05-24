@@ -27,8 +27,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { async } from 'rxjs';
 import { Request } from 'express';
 import { FileFilterCallback, Multer } from 'multer';
-
-
+import { FollowerController } from '../controllers/follower.controller';
+import { FollowerService } from '../services/follower.service';
+import FollowerModel from '../../database/models/follower.model';
 config();
 
 export const moduleMetadataHelper: ModuleMetadata = {
@@ -40,6 +41,7 @@ export const moduleMetadataHelper: ModuleMetadata = {
       AdminModel,
       LoginHistoryModel,
       TokenModel,
+      FollowerModel,
     ]),
     PassportModule.register({
       defaultStrategy: 'jwt',
@@ -78,6 +80,7 @@ export const moduleMetadataHelper: ModuleMetadata = {
     UserController,
     AdminController,
     AuthAdminController,
+    FollowerController,
   ],
   providers: [
     JwtStrategy,
@@ -86,5 +89,6 @@ export const moduleMetadataHelper: ModuleMetadata = {
     UserService,
     AdminService,
     AuthAdminService,
+    FollowerService,
   ],
 };

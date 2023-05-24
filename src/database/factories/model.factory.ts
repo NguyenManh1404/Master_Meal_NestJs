@@ -1,15 +1,14 @@
-import {v4 as uuidv4, v4} from 'uuid';
+import { v4 as uuidv4, v4 } from 'uuid';
 import * as moment from 'moment';
-import {faker} from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
 import UserModel from '../models/user.model';
 import * as bcrypt from 'bcrypt';
 import TokenModel from '../models/token.model';
-import {TokenTypes} from '../../common/constants/token.const';
-import {JwtService} from '@nestjs/jwt';
+import { TokenTypes } from '../../common/constants/token.const';
+import { JwtService } from '@nestjs/jwt';
 import AdminModel from '../models/admin.model';
 
 export default class ModelFactory {
-
   public static async createAdmin(): Promise<AdminModel> {
     const hashPassword = bcrypt.hashSync('1234', 10);
     const admin = new AdminModel();
@@ -28,8 +27,6 @@ export default class ModelFactory {
     user.email = faker.internet.email();
     user.name = faker.name.fullName();
     user.password = hashPassword;
-    // user.gender = +(!Math.round(Math.random()));
-    user.date_of_birth = !Math.round(Math.random()) ? null : faker.date.birthdate();
     user.created_at = faker.date.recent();
     return user;
   }

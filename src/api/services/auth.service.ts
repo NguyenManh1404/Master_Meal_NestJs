@@ -119,7 +119,6 @@ export class AuthService {
     user.name = request.name;
     user.email = request.email;
     user.password = await bcrypt.hash(request.password, 10);
-    user.date_of_birth = request.date_of_birth;
     await user.save();
 
     return user;
