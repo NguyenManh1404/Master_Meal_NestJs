@@ -3,12 +3,19 @@ import moment = require('moment');
 import { DefaultFormat } from '../../../common/constants/format.const';
 import UserModel from '../../../database/models/user.model';
 import FollowerModel from '../../../database/models/follower.model';
+import FavoriteModel from '../../../database/models/favorite.model';
 
-export class FollowerResponse {
+export class FavoriteResponse {
   @ApiProperty({
-    description: 'Follower Id',
+    description: 'Favorite Id',
   })
   public id: string;
+
+  @ApiProperty({
+    description: 'Status',
+    default: 0,
+  })
+  public trangthai: number;
 
   @ApiProperty({
     default: '2000-01-01 00:00:00',
@@ -19,16 +26,17 @@ export class FollowerResponse {
   public user_id: string;
 
   @ApiProperty()
-  public follower_nguoidung_id: string;
+  public id_baidangcongthuc: string;
 
   @ApiProperty()
   public users: UserModel[];
 
-  constructor(follower: FollowerModel) {
-    this.id = follower.id;
-    this.follower_nguoidung_id = follower.follower_nguoidung_id;
-    this.created_at = !follower.created_at
+  constructor(favorite: FavoriteModel) {
+    this.id = favorite.id;
+    this.id_baidangcongthuc = favorite.id_baidangcongthuc;
+    this.trangthai = favorite.trangthai;
+    this.created_at = !favorite.created_at
       ? null
-      : moment(follower.created_at).format(DefaultFormat.DATETIME);
+      : moment(favorite.created_at).format(DefaultFormat.DATETIME);
   }
 }
